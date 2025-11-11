@@ -340,7 +340,7 @@ class Raphan:
             # control of unconverged residues
             unconverged_substructures = [str(substructure_data.optimised_residue_index) for substructure_data in self.substructures_data if not substructure_data.converged]
             if unconverged_substructures:
-                print(f"WARNING! OPTIMISATION FOR RESIDUES WITH INDICE(S) {', '.join(unconverged_substructures)} DID NOT CONVERGE!")
+                print(f"WARNING! OPTIMISATION FOR RESIDUE(S) WITH INDICE(S) {', '.join(unconverged_substructures)} DID NOT CONVERGE!")
 
         print(f"Saving optimised structure to {self.data_dir}/optimised_PDB/{path.basename(self.PDB_file[:-4])}_optimised.pdb... ", end="", flush=True)
         self.io.save(f"{self.data_dir}/optimised_PDB/{path.basename(self.PDB_file[:-4])}_optimised.pdb")

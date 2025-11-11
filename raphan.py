@@ -488,7 +488,8 @@ if __name__ == '__main__':
     raphan = Raphan(args.data_dir, args.PDB_file, args.cpu, args.delete_auxiliary_files)
     raphan.optimise()
     raphan.calculation_time = time() - t
-
+    with open(f"{args.data_dir}/time.txt", "w") as time_file:
+        time_file.write(str(raphan.calculation_time))
     if args.constrained_alpha_carbons_optimisations:
         run_constrained_alpha_optimisations(raphan)
     print("")

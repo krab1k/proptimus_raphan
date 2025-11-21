@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "proptimus-raphan"
+version = "0.1.0"
+description = "Rapid constrained alpha carbon optimisation using overlapping substructures"
+readme = "README.md"
+license = { file = "LICENSE" }
+authors = [
+  { name = "SB NCBR" }
+]
+requires-python = ">=3.9"
+dependencies = [
+  "biopython",
+  "rdkit",
+  "xtb",
+  "tqdm"
+]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent"
+]
+
+[project.scripts]
+raphan = "raphan:main"
+
+[project.urls]
+Homepage = "https://github.com/sb-ncbr/proptimus_raphan"
+
+[tool.setuptools]
+py-modules = ["raphan"]

@@ -1,0 +1,42 @@
+{% set pyproject = load_file_data('../pyproject.toml', from_recipe_dir=True) %}
+{% set project = pyproject.get('project', {}) %}
+{% set name = project.get('name') %}
+{% set version = project.get('version') %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  path: ..
+
+build:
+  noarch: python
+  script: $PYTHON -m pip install . --no-deps --ignore-installed -vv
+
+requirements:
+  host:
+    - python >=3.9
+    - pip
+    - setuptools >=61
+    - wheel
+  run:
+    - python >=3.9
+    - biopython
+    - rdkit
+    - xtb
+    - tqdm
+
+test:
+  commands:
+    - raphan --help
+
+about:
+  home: https://github.com/sb-ncbr/proptimus_raphan
+  license: MIT
+  license_file: LICENSE
+  summary: Rapid constrained alpha-carbon optimisation using overlapping substructures.
+
+extra:
+  recipe-maintainers:
+    - sb-ncbr

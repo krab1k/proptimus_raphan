@@ -21,16 +21,19 @@ git clone https://github.com/sb-ncbr/proptimus_raphan
 
 **3. Set up virtual environment**
 
-* Create a virtual environment named `proptimus_raphan_env`:
+Create a lightweight environment from the direct dependencies and install the CLI into it:
 
 ```
 conda env create -f proptimus_raphan/environment.yml
+conda activate proptimus_raphan
 ```
 
-* Activate the virtual environment:
+After activation, the `raphan` command is available anywhere on your system PATH.
+
+If you want a fully pinned, reproducible lock file, generate one from the fresh environment:
 
 ```
-conda activate proptimus_raphan_env
+conda env export --from-history > environment.lock.yml
 ```
 
 ## Executing the calculation
@@ -61,6 +64,17 @@ For testing purposes, you can compare the optimised structure with the reference
 diff examples/P0DL07_optimised.pdb P0DL07_test/optimised_PDB/P0DL07_optimised.pdb
 ```
 Please note that the resulting structures may vary slightly. This is due to numerical instabilities caused by running on different hardware.
+
+## Conda packaging
+
+To build a local Conda package for testing (the GitHub Action in `.github/workflows/conda-build.yml` does this automatically on pushes and pull requests):
+
+```bash
+conda activate conda-build  # or any environment with conda-build installed
+conda build conda.recipe --output-folder conda-dist
+```
+
+The resulting package will be written to `conda-dist/` and can be installed with `conda install --use-local`.
 
 ## License
 

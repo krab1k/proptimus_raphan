@@ -485,7 +485,8 @@ def run_constrained_alpha_optimisations(raphan):
     print("ok")
 
 
-if __name__ == '__main__':
+def main():
+    """Entry point for the PROPTIMUS RAPHAN CLI."""
     args = load_arguments()
     t = time()
     raphan = Raphan(args.data_dir, args.PDB_file, args.cpu, args.delete_auxiliary_files)
@@ -496,3 +497,7 @@ if __name__ == '__main__':
     if args.constrained_alpha_carbons_optimisations:
         run_constrained_alpha_optimisations(raphan)
     print("")
+
+
+if __name__ == '__main__':
+    main()

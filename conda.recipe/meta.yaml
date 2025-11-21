@@ -1,4 +1,4 @@
-{% set pyproject = load_file_data('../pyproject.toml') %}
+{% set pyproject = load_file_data('../pyproject.toml', from_recipe_dir=True) %}
 {% set project = pyproject.get('project', {}) %}
 {% set name = project.get('name') %}
 {% set version = project.get('version') %}

@@ -1,5 +1,10 @@
 {% set name = "proptimus-raphan" %}
-{% set version = load_file_regex('../pyproject.toml', 'version = "([^"]+)"', 1) %}
+{% set version_match = load_file_regex(
+    load_file='../pyproject.toml',
+    regex_pattern='^version = "([^"]+)"',
+    from_recipe_dir=True
+) %}
+{% set version = version_match[1] %}
 
 package:
   name: {{ name }}
